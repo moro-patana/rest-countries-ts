@@ -1,26 +1,22 @@
-import React, { useEffect, createContext } from 'react'
+import React, { useEffect, useState } from 'react'
+import { CountryData, Service } from "./interfaces"
 const endPoint = "https://restcountries.eu/rest/v2/all"
 
+export interface CountriesData {
+    results: CountryData[];
+  }
 
-export const initialValues = {
-    countries: []
-}
+  export default function GlobalContextProvider() {
+      const [countries, setCountries] = useState<Service<CountriesData>>({
+          status: 'loading'
+      });
 
-export const GlobalContext = createContext(initialValues)
- export const GlobalContextProvider: React.FC = ({children}) => {
-
-    async function fetchData() {
-    const response = await fetch(endPoint)
-    const data = await response.json()
-    console.log(data);
+      useEffect(() => {
+        fetch(endPoint)
+          .then(response => response.json())
+          .then(response => setCountries({ status: 'loaded', payload: response }))
+          .catch(error => setCountries({ status: 'error', error }));
+      }, []);
     
-    }
-    useEffect(() => {
-       fetchData()
-    }, [])
-    return (
-        <GlobalContext.Provider value={{countries: []}}>
-            {children}
-        </GlobalContext.Provider>
-    )
-}
+      return countries;
+  }
