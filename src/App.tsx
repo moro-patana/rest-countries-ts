@@ -1,10 +1,10 @@
 import React from 'react'
-import { GlobalContextProvider} from "./components/GlobalContext"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 export default function App() {
   return (
     <div>
-      <GlobalContextProvider/>
+      <h1>Rest Countries</h1>
     </div>
   )
 }
