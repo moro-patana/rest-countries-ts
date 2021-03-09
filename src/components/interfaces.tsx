@@ -24,7 +24,32 @@ export interface CountryData {
    flag: string,
    regionalBlocs: [{}]
   }
-
+  export interface Country {
+    
+    name: string,
+    toplevelDomain: [string],
+    alpha2Code: string,
+    alpha3Code: string,
+    callingCodes: [string],
+    capital: string,
+    altSpelling: [string],
+    region: string,
+    subregion: string,
+    population: number,
+    latlng: [number],
+    demonym: string,
+    area: number,
+    gini: number,
+    timezones: [string],
+    border: [string],
+    nativeName: string,
+    numericCode: string,
+    currencies: [{}],
+    languages: [{}],
+    translations: {},
+    flag: string,
+    regionalBlocs: [{}]
+   }
   interface ServiceLoading {
     status: 'loading';
   }
