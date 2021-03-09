@@ -1,4 +1,5 @@
 export interface CountryData {
+    
    name: string,
    toplevelDomain: [string],
    alpha2Code: string,
