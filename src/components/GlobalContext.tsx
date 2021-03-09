@@ -5,12 +5,17 @@ export interface CountriesData {
     results: CountryData[]; 
     loading: boolean;
     error: string;
+    countryName: string;
+    country: []
+
   }
 
 const initialValues: CountriesData = {
   results: [], 
   loading: true,
-  error: ''
+  error: '',
+  countryName: '',
+  country: []
 }
 
   export const Context = createContext(initialValues);
@@ -20,7 +25,6 @@ const initialValues: CountriesData = {
       const [error, setError] = useState('');
       const [loading, setLoading] = useState(true);
 
-      console.log(countries);
 
       useEffect(() => {
         fetch('https://restcountries.eu/rest/v2/all')
@@ -29,11 +33,9 @@ const initialValues: CountriesData = {
           .then( () => setLoading(false))
           .catch(() => setError("Failed"));
       }, []);
-    
-      console.log(countries);
       
       return (
-        <Context.Provider value={{results: countries, loading: loading, error: error}}>
+        <Context.Provider value={{results: countries, loading: loading, error: error, countryName: '', country: []}}>
           {children}
         </Context.Provider>
       )
