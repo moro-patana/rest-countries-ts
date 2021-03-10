@@ -24,6 +24,8 @@ const initialValues: CountriesData = {
       const [countries, setCountries] = useState([]);
       const [error, setError] = useState('');
       const [loading, setLoading] = useState(true);
+      console.log(countries);
+      
 
 
       useEffect(() => {

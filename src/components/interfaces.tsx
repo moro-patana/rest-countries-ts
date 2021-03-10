@@ -1,7 +1,18 @@
+type languages = {
+  iso639_1: string
+  iso639_2: string
+  name: string
+  nativeName: string
+}
+type currencies = {
+  code: string
+  name: string
+  symbol: string
+}
 export interface CountryData {
     
    name: string,
-   toplevelDomain: [string],
+   topLevelDomain: [string],
    alpha2Code: string,
    alpha3Code: string,
    callingCodes: [string],
@@ -15,11 +26,11 @@ export interface CountryData {
    area: number,
    gini: number,
    timezones: [string],
-   border: [string],
+   borders: [string],
    nativeName: string,
    numericCode: string,
-   currencies: [{}],
-   languages: [{}],
+   currencies: currencies[],
+   languages: languages[],
    translations: {},
    flag: string,
    regionalBlocs: [{}]

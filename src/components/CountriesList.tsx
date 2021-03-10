@@ -9,10 +9,17 @@ const Container = styled.div`
   a {
       text-decoration: none;
       color: black;
+      width: 300px;
+    height: 500px;
   }
 `;
 const Image =styled.img`
-width: 100%;
+    width: 100%;
+`;
+const Card = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
 `;
 const CountryCard = styled.div`
 background-color: white;
@@ -40,19 +47,21 @@ const CountriesList: React.FC<{}> = () => {
     return (
       <Container>
         {loading && <div>Loading...</div>}
-        {!loading && results.map(country => (
-            <Link to={`/country/${country.name}`} key={country.name}>
-            <CountryCard key={country.name}>
-                <Image src={country.flag} alt="Flag"/>
-                <Title>{country.name}</Title>
-                <List>
-                    <ListItem>Population: {country.population}</ListItem>
-                    <ListItem>Region: {country.region}</ListItem>
-                    <ListItem>Capital: {country.capital}</ListItem>
-                </List>
-            </CountryCard>
-            </Link>
-          ))}
+        <Card>
+          {!loading && results.map(country => (
+              <Link to={`/country/${country.name}`} key={country.name}>
+              <CountryCard key={country.name}>
+                  <Image src={country.flag} alt="Flag"/>
+                  <Title>{country.name}</Title>
+                  <List>
+                      <ListItem>Population: {country.population}</ListItem>
+                      <ListItem>Region: {country.region}</ListItem>
+                      <ListItem>Capital: {country.capital}</ListItem>
+                  </List>
+              </CountryCard>
+              </Link>
+            ))}
+        </Card>
         {error && (
           <div>Error, the backend moved to the dark side.</div>
         )}
