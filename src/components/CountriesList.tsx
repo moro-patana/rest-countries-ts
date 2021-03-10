@@ -2,10 +2,12 @@ import React, { useContext } from 'react'
 import { Context } from "./GlobalContext"
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
+import Head from "../components/Head"
 
 
 const Container = styled.div`
   padding: 1rem;
+
   a {
       text-decoration: none;
       color: black;
@@ -47,9 +49,10 @@ const CountriesList: React.FC<{}> = () => {
     return (
       <Container>
         {loading && <div>Loading...</div>}
+        <Head/>
         <Card>
           {!loading && results.map(country => (
-              <Link to={`/country/${country.name}`} key={country.name}>
+              <Link to={`/country/${country.alpha3Code}`} key={country.name}>
               <CountryCard key={country.name}>
                   <Image src={country.flag} alt="Flag"/>
                   <Title>{country.name}</Title>
