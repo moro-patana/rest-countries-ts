@@ -9,6 +9,7 @@ type currencies = {
   name: string
   symbol: string
 }
+
 export interface CountryData {
     
    name: string,
