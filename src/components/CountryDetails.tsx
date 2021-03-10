@@ -5,13 +5,16 @@ import styled from "styled-components"
 
 const DetailsContainer = styled.div`
  display: flex;
- flex-direction: row;
+ flex-direction: column;
  gap: 30px;
- align-items: center;
    ul {
        padding-left: 0;
    }
- 
+ @media (min-width: 1140px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+ }
 `;
 const DetailsContent = styled.div`
  display: flex;
@@ -47,7 +50,7 @@ const CountryDetails: React.FC<{}> = () => {
     const { countryName } = useParams<ParamTypes>()
     
     
-    const country = results.find(res => res.name === countryName)
+    const country = results.find(res => res.alpha3Code === countryName)
     
 
 
@@ -83,12 +86,14 @@ const CountryDetails: React.FC<{}> = () => {
                         </ul>
                     </DetailsContent>
                     <ButtonContainer>
-                        <p>Border countries:</p>
+                    <p>Border countries:</p>
+                        {country?.borders.length  ? 
                         <ButtonList>{country?.borders.map(index => (
-                            <Link to={`/country/${country?.name}`}>
+                            <Link to={`/country/${index}`}>
                                 <List>{index}</List>
                             </Link>
                         ))}</ButtonList>
+                        : <p>No borders country for this country</p>}
                     </ButtonContainer>
                 </div>
             </DetailsContainer>
